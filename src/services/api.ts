@@ -11,8 +11,9 @@ interface AuthParams {
 
 async function auth({ login, senha }: AuthParams): Promise<string> {
   try {
-    const { data } = await axios.post('/login', {
-      data: { login, senha },
+    const { data } = await api.post('/login', {
+      login,
+      senha,
     });
     localStorage.setItem('userToken', data);
     return data;

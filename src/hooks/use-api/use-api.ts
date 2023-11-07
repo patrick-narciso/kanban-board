@@ -5,7 +5,7 @@ import { UseApiProps } from './use-api.types';
 
 export const useApi = ({ method, path, body, service = api }: UseApiProps) => {
   const fetcher = useCallback(
-    (url: string) => service[method](url, body).then((res: { data: unknown }) => res.data),
+    (url: string) => service[method](url, body).then((res) => res.data),
     [body, method, service]
   );
 
