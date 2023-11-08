@@ -1,9 +1,4 @@
-export type Card = {
-  id: number;
-  titulo: string;
-  conteudo: string;
-  lista: string;
-};
+import { Card } from '@/entities';
 
 export type GetCardsApi = () => {
   cards: Card[];
