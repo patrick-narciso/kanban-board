@@ -41,6 +41,10 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
+    if (error.response.status === 400) {
+      window.alert('Verifique se os dados foram preenchidos corretamente e tente novamente.');
+    }
+
     if (error.response.status === 401 && !originalRequest.__retry) {
       originalRequest._retry = true;
 
