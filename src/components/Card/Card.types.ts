@@ -1,11 +1,26 @@
 import { Card } from '@/entities';
-import { ChangeEvent } from 'react';
+import { Dispatch, SetStateAction } from 'react';
+
+type MoveCard = (
+  e: React.MouseEvent<HTMLElement>,
+  id: number,
+  list: string
+) => Promise<{ card: Card }>;
 
 export type CardProps = {
-  title: string;
-  description: string;
-  onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeDescription: (event: ChangeEvent<HTMLTextAreaElement>) => void;
-  handleSave: (title: string, description: string, list: string) => Card;
-  handleDelete: (id: number) => Card[];
+  title: { [x: number]: string };
+  id: number;
+  list: string;
+  description: { [x: number]: string };
+  isEditMode: boolean;
+  originalTitle: string;
+  originalContent: string;
+  setEditMode: Dispatch<SetStateAction<{ [x: number]: boolean }>>;
+  handleTitle: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleDescription: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  handleCancel: (e: React.MouseEvent<HTMLElement>, id: number) => void;
+  handleUpdateCard: (e: React.MouseEvent<HTMLElement>, id: number) => Promise<{ card: Card }>;
+  moveLeft?: MoveCard;
+  moveRight?: MoveCard;
+  handleDeleteCard: (e: React.MouseEvent<HTMLElement>, id: number) => Promise<{ cards: Card[] }>;
 };

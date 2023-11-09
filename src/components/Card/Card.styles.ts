@@ -56,6 +56,17 @@ export const Description = styled.textarea`
   ${textInputCSSReset}
 `;
 
+export const MarkdownContent = styled.div`
+  color: #221c1d;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  height: 95px;
+  resize: none;
+`;
+
 export const Title = styled.input`
   color: #000000;
   font-family: Poppins;

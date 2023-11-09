@@ -17,6 +17,7 @@ export const Container = styled.div`
   align-items: flex-start;
   gap: 16px;
   border-radius: 4px;
+  margin-right: 16px;
   border: 1px solid #e5e5e5;
   background: #f9f9f9;
 `;

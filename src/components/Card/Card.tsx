@@ -1,50 +1,66 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent } from 'react';
 import {
   FiEdit as Edit,
   FiSave as Save,
   FiXCircle as Cancel,
   FiTrash as Delete,
+  FiArrowLeft as ArrowLeft,
+  FiArrowRight as ArrowRight,
 } from 'react-icons/fi';
 import { CardProps } from './Card.types';
-import { Container, Description, Title, Row, Column } from './Card.styles';
+import { Container, Description, Title, Row, MarkdownContent } from './Card.styles';
+import { parseMarkdown } from '@/utils/parseMarkdown';
 
 const Card: FunctionComponent<CardProps> = ({
+  id,
   title,
   description,
-  onChangeTitle,
-  onChangeDescription,
-  handleSave,
-  handleDelete,
+  isEditMode,
+  originalTitle,
+  originalContent,
+  list,
+  moveLeft,
+  moveRight,
+  setEditMode,
+  handleTitle,
+  handleDescription,
+  handleUpdateCard,
+  handleDeleteCard,
+  handleCancel,
 }) => {
-  const [isEditMode, setEditMode] = useState<boolean>(false);
-
   return (
     <Container>
       <Row>
         <Title
           readOnly={!isEditMode}
           placeholder="Your title here..."
-          value={title}
-          onChange={onChangeTitle}
+          value={isEditMode ? title[id] : originalTitle}
+          onChange={handleTitle}
         />
-        {!isEditMode && <Edit onClick={() => setEditMode(true)} />}
+        {!isEditMode && <Edit onClick={() => setEditMode((prev) => ({ ...prev, [id]: true }))} />}
       </Row>
-      <Description
-        readOnly={!isEditMode}
-        placeholder="Your description here..."
-        value={description}
-        onChange={onChangeDescription}
-      />
+      {isEditMode && (
+        <Description
+          placeholder="Your description here..."
+          value={isEditMode ? description[id] : originalContent}
+          onChange={handleDescription}
+        />
+      )}
+      {!isEditMode && (
+        <MarkdownContent dangerouslySetInnerHTML={{ __html: parseMarkdown(description[id]) }} />
+      )}
       <Row>
         {isEditMode ? (
           <>
-            <Cancel onClick={() => setEditMode(false)} />
-            <Save onClick={handleSave} />
+            <Cancel onClick={handleCancel} />
+            <Save onClick={handleUpdateCard} />
           </>
         ) : (
-          <Column>
-            <Delete onClick={handleDelete} />
-          </Column>
+          <>
+            {list !== 'To Do' && <ArrowLeft onClick={moveLeft} />}
+            <Delete onClick={handleDeleteCard} />
+            {list !== 'Done' && <ArrowRight onClick={moveRight} />}
+          </>
         )}
       </Row>
     </Container>
