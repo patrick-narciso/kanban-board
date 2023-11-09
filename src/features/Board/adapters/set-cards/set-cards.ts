@@ -1,18 +1,10 @@
 import { SetCardsApi } from './set-cards.types';
-import { useApi } from '@/hooks/use-api';
+import { api } from '@/services/api';
 
-export const SetCards: SetCardsApi = ({ titulo, conteudo, lista }) => {
-  const { data: card } = useApi({
-    path: '/cards',
-    method: 'post',
-    body: {
-      titulo,
-      conteudo,
-      lista,
-    },
-  });
+export const SetCards: SetCardsApi = async ({ titulo, conteudo, lista }) => {
+  const { data } = await api.post('/cards', { titulo, conteudo, lista });
 
   return {
-    card,
+    card: data,
   };
 };

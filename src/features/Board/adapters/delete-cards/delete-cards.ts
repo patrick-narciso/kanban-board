@@ -1,13 +1,10 @@
 import { DeleteCardApi } from './delete-cards.types';
-import { useApi } from '@/hooks/use-api';
+import { api } from '@/services/api';
 
-export const DeleteCards: DeleteCardApi = ({ id }) => {
-  const { data: cards } = useApi({
-    path: `/cards/${id}`,
-    method: 'delete',
-  });
+export const DeleteCards: DeleteCardApi = async ({ id }) => {
+  const { data } = await api.delete(`/cards/${id}`);
 
   return {
-    cards,
+    cards: data,
   };
 };

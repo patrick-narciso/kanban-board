@@ -1,5 +1,3 @@
 import { Card } from '@/entities';
 
-export type GetCardsApi = () => {
-  cards: Card[];
-};
+export type GetCardsApi = () => Promise<{ cards: Card[] }>;

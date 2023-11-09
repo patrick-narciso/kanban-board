@@ -7,6 +7,4 @@ export type UpdateCardParams = {
   lista: string;
 };
 
-export type UpdateCardApi = (params: UpdateCardParams) => {
-  card: Card;
-};
+export type UpdateCardApi = (params: UpdateCardParams) => Promise<{ card: Card }>;

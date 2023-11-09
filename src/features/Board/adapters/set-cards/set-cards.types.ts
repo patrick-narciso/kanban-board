@@ -6,6 +6,4 @@ export type SetCardParams = {
   lista: string;
 };
 
-export type SetCardsApi = (params: SetCardParams) => {
-  card: Card;
-};
+export type SetCardsApi = (params: SetCardParams) => Promise<{ card: Card }>;

@@ -1,13 +1,10 @@
 import { GetCardsApi } from './get-cards.types';
-import { useApi } from '@/hooks/use-api';
+import { api } from '@/services/api';
 
-export const GetCards: GetCardsApi = () => {
-  const { data: cards } = useApi({
-    path: '/cards',
-    method: 'get',
-  });
+export const GetCards: GetCardsApi = async () => {
+  const { data } = await api.get('/cards');
 
   return {
-    cards,
+    cards: data,
   };
 };

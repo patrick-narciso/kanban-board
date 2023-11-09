@@ -4,6 +4,4 @@ export type DeleteCardParams = {
   id: number;
 };
 
-export type DeleteCardApi = (params: DeleteCardParams) => {
-  cards: Card[];
-};
+export type DeleteCardApi = (params: DeleteCardParams) => Promise<{ cards: Card[] }>;
