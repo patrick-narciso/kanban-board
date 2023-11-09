@@ -66,7 +66,7 @@ src/
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 
-[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). Além disto, você vai precisar ter uma uma `PRIVATE_KEY` e uma `PUBLIC_KEY` que você pode obter no site da Marvel API [MARVEL API](https://developer.marvel.com/), após criar uma conta clique na aba `Get a key` no menu principal e obtenha as duas chaves. Nesta mesma tela autorize o seu domínio local para conseguir consumir a API localmente neste caso `localhost`. Na raíz do projeto possui um arquivo chamado `.env.example` com o contéudo abaixo. Copie, crie um arquivo `.env.local` na raíz do seu projeto e preencha com suas chaves.
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).
 
 #### 🎲 Rodando a aplicação
 
