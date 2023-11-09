@@ -1,0 +1,16 @@
+version: '3'
+services:
+  kanban-backend:
+    build:
+      dockerfile: ./BACK/Dockerfile
+      context: .
+    image: kanban-backend:latest
+    ports:
+      - 5000:5000
+  kanban-frontend:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    image: kanban-frontend:latest
+    ports:
+      - 5173:5173
